@@ -17,16 +17,17 @@ object IOFailure extends App {
     sq <- sqrt(IO.point(9.0)) match {
 //      case e:Exception => putStrLn("minus not allowed ")
       case num =>putStrLn(unsafeRun(num).toString)
+
     }
   } yield ("")
 
-  def openFile(s: String): IO[String, Long] = {
+  def openFile(s: String): IO[String, Long]= {
     IO.syncCatch(FileUtils.sizeOf(new File(s))) {
-      case e: IOException => "Null pointer exception "
+      case e:Exception => e.getMessage
     }
   }
 
-  val read = openFile("/home/naseem/Documents/SFreely NEW/IOMonad/file.txt").attempt.map {
+  val read = openFile("file1323.txt").attempt.map {
     case Left(left) => left
     case Right(right) => right
   }
