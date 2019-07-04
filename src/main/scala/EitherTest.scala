@@ -1,3 +1,4 @@
+import scalaz.zio.ZIO
 
 object EitherTest {
   def main(args: Array[String]): Unit = {
@@ -15,3 +16,4 @@ object EitherTest {
     }
   }
 }
+
